@@ -47,6 +47,9 @@ st.markdown(
         padding: 0.5rem 1rem;
         transition: all 0.3s ease;
     }
+
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
     </style>
     """,
     unsafe_allow_html=True,
