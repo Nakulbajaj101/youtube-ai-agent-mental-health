@@ -11,53 +11,50 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Minimal Safe CSS for aesthetics
+# Definitive Clean UI CSS
 st.markdown(
     """
     <style>
-    /* Hide Main Branding Elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    /* 1. Hide Top Header (Hamburger, Toolbar, Decoration) */
+    header[data-testid="stHeader"] {
+        visibility: hidden !important;
+    }
+    [data-testid="stToolbar"] {
+        visibility: hidden !important;
+    }
+    [data-testid="stDecoration"] {
+        visibility: hidden !important;
+    }
     
-    /* Ensure footer area doesn't take up space */
+    /* 2. Hide Footer (Made with Streamlit) */
     footer {
         visibility: hidden !important;
-        height: 0px;
-        overflow: hidden;
+        height: 0px !important;
+    }
+    .stFooter {
+        visibility: hidden !important;
     }
     
-    /* Remove padding that originally accounted for footer */
-    .block-container {
-        padding-bottom: 0rem !important;
+    /* 3. Hide 'App created by me' / Status Widget */
+    [data-testid="stStatusWidget"] {
+        visibility: hidden !important;
     }
-
-    /* Your Clean Theme Adjustments */
+    #MainMenu {
+        visibility: hidden !important;
+    }
+    
+    /* 4. Chat Bubbles Transparent */
     .stChatMessage {
         background-color: transparent !important;
         border: none !important;
     }
+    
+    /* 5. Buttons (Calm Theme) */
     div.stButton > button {
         border-radius: 20px;
         border: none;
         padding: 0.5rem 1rem;
         transition: all 0.3s ease;
-    }
-    div[data-testid="stToolbar"] {
-    visibility: hidden;
-    height: 0%;
-    position: fixed;
-    }
-    
-    div[data-testid="appCreatorAvatar"] {
-    display: none;
-    visibility: hidden;
-    }
-
-    /* Targets the specific container class you identified */
-    ._container_gzau3_1, ._link_gzau3_10 {
-        display: none !important;
-        visibility: hidden;
     }
     </style>
     """,
