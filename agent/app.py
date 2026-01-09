@@ -48,6 +48,17 @@ st.markdown(
     height: 0%;
     position: fixed;
     }
+    
+    div[data-testid="appCreatorAvatar"] {
+    display: none;
+    visibility: hidden;
+    }
+
+    /* Targets the specific container class you identified */
+    ._container_gzau3_1 {
+        display: none;
+        visibility: hidden;
+    }
     </style>
     """,
     unsafe_allow_html=True,
