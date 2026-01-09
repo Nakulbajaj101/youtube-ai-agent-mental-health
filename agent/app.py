@@ -15,19 +15,33 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Aggressively hide all UI elements */
+    /* Simple, clean hiding strategy (User Preferred) */
     
-    /* 1. Hide Header & Toolbar */
-    [data-testid="stHeader"] {display: none !important;}
-    [data-testid="stToolbar"] {display: none !important;}
-    .stApp > header {display: none !important;}
+    /* Hide Header & Toolbar */
+    [data-testid="stHeader"] {
+        visibility: hidden;
+    }
+    [data-testid="stToolbar"] {
+        visibility: hidden;
+    }
     
-    /* 3. Hide specific 'Manage App' / 'Status' widgets */
-    #MainMenu {visibility: hidden !important;}
-    [data-testid="stStatusWidget"] {visibility: hidden !important;}
+    /* Hide Footer */
+    footer {
+        visibility: hidden;
+    }
+    [data-testid="stFooter"] {
+        visibility: hidden;
+    }
     
-    /* 4. Hide Decoration (Top colored bar) */
-    [data-testid="stDecoration"] {display: none !important;}
+    /* Hide 'App created by me' */
+    [data-testid="stStatusWidget"] {
+        visibility: hidden;
+    }
+    
+    /* Top decoration bar */
+    [data-testid="stDecoration"] {
+        visibility: hidden;
+    }
     
     /* Make chat bubbles transparent for that "Clean" look */
     .stChatMessage {
@@ -43,8 +57,6 @@ st.markdown(
         transition: all 0.3s ease;
     }
 
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
     </style>
     """,
     unsafe_allow_html=True,
