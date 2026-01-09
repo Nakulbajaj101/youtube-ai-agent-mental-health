@@ -20,12 +20,6 @@ st.markdown(
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
-    /* Target specific 2026 Streamlit test IDs */
-    [data-testid="stHeader"] {visibility: hidden;}
-    [data-testid="stToolbar"] {visibility: hidden;}
-    [data-testid="stDecoration"] {visibility: hidden;}
-    [data-testid="stStatusWidget"] {visibility: hidden;}
-    
     /* Ensure footer area doesn't take up space */
     footer {
         visibility: hidden !important;
@@ -48,6 +42,11 @@ st.markdown(
         border: none;
         padding: 0.5rem 1rem;
         transition: all 0.3s ease;
+    }
+    div[data-testid="stToolbar"] {
+    visibility: hidden;
+    height: 0%;
+    position: fixed;
     }
     </style>
     """,
