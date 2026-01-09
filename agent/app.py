@@ -17,10 +17,14 @@ st.markdown(
     <style>
     /* Robustly hide elements */
     [data-testid="stHeader"] {
-        display: none;
+        display: none !important;
+    }
+    /* Hide footer using multiple selectors for robustness */
+    footer {
+        display: none !important;
     }
     [data-testid="stFooter"] {
-        display: none;
+        display: none !important;
     }
     [data-testid="stToolbar"] {
         display: none;
