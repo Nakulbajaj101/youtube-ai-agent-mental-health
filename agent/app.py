@@ -14,23 +14,18 @@ st.set_page_config(
 # Custom CSS for aesthetics
 st.markdown(
     """
-    <!-- Google Fonts: standard link method (more robust than @import) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <style>
     /* General App Styling */
     .stApp {
         background-color: #fcfcfc; /* Very light cool grey/white */
-        font-family: 'Outfit', sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Safe, robust font stack */
     }
     
     /* Headers */
     h1, h2, h3 {
         color: #2c3e50;
         font-weight: 600;
-        font-family: 'Outfit', sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     
     /* Chat Message Bubbles */
@@ -49,7 +44,7 @@ st.markdown(
         background-color: #ffffff;
         border-radius: 20px;
         border: 1px solid #e0e0e0;
-        font-family: 'Outfit', sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         color: #333;
     }
     
