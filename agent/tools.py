@@ -12,18 +12,17 @@ from pydantic_ai import Agent, RunContext
 
 
 class ElasticsearchCLient:
-    def __init__(self, summarize_agent: Agent):
+    def __init__(self, summarize_agent: Agent, index_name: str):
         self._host = ELASTIC_SEARCH_HOST
         self.summarize_agent = summarize_agent
+        self.index_name = index_name
         if ELASTIC_SEARCH_API_KEY:
             self.__key = ELASTIC_SEARCH_API_KEY
             self._client = Elasticsearch(hosts=self._host, api_key=self.__key)
         else:
             self._client = Elasticsearch(hosts=self._host)
 
-    def search_videos(
-        self, query: str, index_name: str = "podcasts", size: int = 5
-    ) -> list[dict]:
+    def search_videos(self, query: str, size: int = 5) -> list[dict]:
         """
         Performs a full-text search across video titles and subtitles using Elasticsearch.
 
@@ -32,8 +31,6 @@ class ElasticsearchCLient:
 
         Args:
             query (str): The search terms provided by the user.
-            index_name (str, optional): The Elasticsearch index to query.
-                Defaults to "podcasts".
             size (int, optional): The maximum number of search results to return.
                 Defaults to 5.
 
@@ -81,7 +78,7 @@ class ElasticsearchCLient:
         }
 
         try:
-            response = self._client.search(index=index_name, body=body)
+            response = self._client.search(index=self.index_name, body=body)
             hits = response.body["hits"]["hits"]
 
             results = []
@@ -93,7 +90,7 @@ class ElasticsearchCLient:
                 return results
 
         except NotFoundError:
-            print(f"Error: Index '{index_name}' not found.")
+            print(f"Error: Index '{self.index_name}' not found.")
         except ConnectionError:
             print("Error: Could not connect to Elasticsearch.")
         except RequestError as e:
@@ -117,7 +114,7 @@ class ElasticsearchCLient:
             dict: A dictionary with video id, title of the video and its subtitles
         """
 
-        result = self._client.get(index="podcasts", id=video_id)
+        result = self._client.get(index="self_improvement_podcasts", id=video_id)
         return result["_source"]
 
     async def summarize(self, ctx: RunContext, video_id: str) -> str:

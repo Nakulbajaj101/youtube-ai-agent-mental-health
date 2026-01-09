@@ -1,4 +1,4 @@
-from config import research_instructions, summarization_instructions
+from config import INDEX_NAME, research_instructions, summarization_instructions
 from pydantic_ai.agent import Agent
 from tools import ElasticsearchCLient
 
@@ -8,7 +8,7 @@ summarization_agent = Agent(
     model="openai:gpt-4o-mini",
 )
 
-es = ElasticsearchCLient(summarize_agent=summarization_agent)
+es = ElasticsearchCLient(summarize_agent=summarization_agent, index_name=INDEX_NAME)
 
 research_agent = Agent(
     name="research",

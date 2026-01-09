@@ -6,6 +6,7 @@ from activities import (
     YouTubeTranscriptActivities,
     get_videos_metadata,
 )
+from config import INDEX_NAME
 from create_indices import ElasticSearchClient
 from temporalio.client import Client
 from temporalio.worker import Worker
@@ -18,12 +19,8 @@ async def run_podcast_worker():
     executor = ThreadPoolExecutor(max_workers=8)
 
     yt_activities = YouTubeTranscriptActivities()
-    es_activities = ElasticSearchActivities(
-        host="http://localhost:9200", index_name="podcasts"
-    )
-    es_search_activity = ElasticSearchClient(
-        host="http://localhost:9200", index_name="podcasts"
-    )
+    es_activities = ElasticSearchActivities(index_name=INDEX_NAME)
+    es_search_activity = ElasticSearchClient(index_name=INDEX_NAME)
 
     worker = Worker(
         client=client,

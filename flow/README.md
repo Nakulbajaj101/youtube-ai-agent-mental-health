@@ -6,7 +6,7 @@ This directory contains the Temporal workflow and activities responsible for ing
 
 The flow is designed to:
 1.  **Fetch Metadata**: Retrieve video titles and URLs from a predefined list.
-2.  **Create Indices**: Initialize the Elasticsearch index (`podcasts`) with correct mappings (analyzers, stop words, etc.).
+2.  **Create Indices**: Initialize the Elasticsearch index (`self_improvement_podcasts`) with correct mappings (analyzers, stop words, etc.).
 3.  **Process Transcripts**: For each video:
     *   Download the transcript from YouTube.
     *   Preprocess the text (clean and format).

@@ -1,3 +1,6 @@
+import re
+
+
 def timestamp_to_seconds(timestamp: str) -> int:
     """
     Converts 'HH:MM:SS', 'MM:SS', or 'S' formats to total seconds.
@@ -26,7 +29,7 @@ def timestamp_to_seconds(timestamp: str) -> int:
 
 def fix_youtube_links(text: str) -> str:
     words = text.split()
-    processed_words = []
+    processed_links = []
 
     for word in words:
         # Check if the word is a YouTube link with the specific suffix
@@ -34,10 +37,9 @@ def fix_youtube_links(text: str) -> str:
             # 1. Split the URL into the base and the timestamp
             # Example: "https://youtu.be/abc?t=1:02" -> ["...abc", "1:02"]
             base_url, timestamp_raw = word.split("?t=", 1)
-
+            updated_url = f"https://{base_url.split('https://')[1]}"
             # 2. Clean up any trailing punctuation (like a period or closing bracket)
             timestamp_clean = timestamp_raw.rstrip(".,)]")
-            trailing_char = timestamp_raw[len(timestamp_clean) :]
 
             try:
                 # 3. Convert and Reconstruct
@@ -45,17 +47,13 @@ def fix_youtube_links(text: str) -> str:
 
                 # Use &t= for long URLs that already have ?v=, otherwise ?t=
                 sep = "&t=" if "watch?v=" in base_url else "?t="
-                new_word = f"{base_url}{sep}{seconds}{trailing_char}"
-                processed_words.append(new_word)
+                new_word = f"{base_url}{sep}{seconds}"
+                new_url = f"{updated_url}{sep}{seconds}"
+                text = text.replace(word, new_word)
+
+                processed_links.append(new_url)
             except (ValueError, IndexError):
                 # If splitting fails or timestamp isn't valid, keep original
-                processed_words.append(word)
-        else:
-            processed_words.append(word)
+                processed_links.append(word)
 
-    return " ".join(processed_words)
-
-
-if __name__ == "__main__":
-    sample = "Check the answer at https://youtu.be/dQw4w9WgXcQ?t=1:02:03. Also see https://youtube.com/watch?v=H63RbTuHTy0?t=520"
-    print(fix_youtube_links(sample))
+    return (text, processed_links)

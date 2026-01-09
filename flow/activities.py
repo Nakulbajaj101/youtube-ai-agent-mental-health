@@ -1,5 +1,6 @@
 import os
 
+from config import ELASTIC_SEARCH_API_KEY, ELASTIC_SEARCH_HOST
 from elasticsearch import Elasticsearch
 from temporalio import activity
 from youtube_transcript_api import YouTubeTranscriptApi
@@ -48,14 +49,17 @@ def get_videos_metadata(data: list[dict]) -> list:
 
 
 class ElasticSearchActivities:
-    def __init__(self, host: str, index_name: str):
-        if host is None:
-            host = os.getenv("ELASTICSEARCH_ADDRESS", "http://localhost:9200")
-        self.es = Elasticsearch(host)
+    def __init__(self, index_name: str):
+        self._host = ELASTIC_SEARCH_HOST
+        if ELASTIC_SEARCH_API_KEY:
+            self.__key = ELASTIC_SEARCH_API_KEY
+            self._client = Elasticsearch(hosts=self._host, api_key=self.__key)
+        else:
+            self._client = Elasticsearch(hosts=self._host)
         self.index_name = index_name
 
     def video_exists(self, video_id: str):
-        resp = self.es.exists(index=self.index_name, id=video_id)
+        resp = self._client.exists(index=self.index_name, id=video_id)
         return resp.body
 
     @activity.defn
@@ -66,7 +70,7 @@ class ElasticSearchActivities:
                 "title": video_data["title"],
                 "subtitles": subtitles,
             }
-            self.es.index(index=self.index_name, id=doc["video_id"], document=doc)
+            self._client.index(index=self.index_name, id=doc["video_id"], document=doc)
         else:
             print(f"Index already exists for video {video_data['video_id']}.")
 
