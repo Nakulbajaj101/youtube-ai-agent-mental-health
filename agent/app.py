@@ -15,20 +15,24 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Robustly hide elements */
-    [data-testid="stHeader"] {
-        display: none !important;
-    }
-    /* Hide footer using multiple selectors for robustness */
-    footer {
-        display: none !important;
-    }
-    [data-testid="stFooter"] {
-        display: none !important;
-    }
-    [data-testid="stToolbar"] {
-        display: none;
-    }
+    /* Aggressively hide all UI elements */
+    
+    /* 1. Hide Header & Toolbar */
+    [data-testid="stHeader"] {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    .stApp > header {display: none !important;}
+    
+    /* 2. Hide Footer (Standard) */
+    footer {visibility: hidden !important; height: 0px !important;}
+    [data-testid="stFooter"] {display: none !important;}
+    .stFooter {display: none !important;}
+    
+    /* 3. Hide specific 'Manage App' / 'Status' widgets */
+    #MainMenu {visibility: hidden !important;}
+    [data-testid="stStatusWidget"] {visibility: hidden !important;}
+    
+    /* 4. Hide Decoration (Top colored bar) */
+    [data-testid="stDecoration"] {display: none !important;}
     
     /* Make chat bubbles transparent for that "Clean" look */
     .stChatMessage {
