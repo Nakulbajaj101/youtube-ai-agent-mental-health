@@ -55,8 +55,8 @@ st.markdown(
     }
 
     /* Targets the specific container class you identified */
-    div[_link_gzau3_10] {
-        display: none;
+    ._container_gzau3_1, ._link_gzau3_10 {
+        display: none !important;
         visibility: hidden;
     }
     </style>
