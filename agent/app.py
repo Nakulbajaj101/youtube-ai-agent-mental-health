@@ -71,9 +71,7 @@ st.markdown(
         margin-top: 10px;
     }
     
-    /* Hide default header/footer */
-    header {visibility: hidden;}
-    footer {visibility: hidden;}
+    /* Header/Footer visibility hidden removed to prevent mobile layout blanking */
     
     </style>
     """,
