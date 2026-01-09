@@ -11,6 +11,31 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Minimal Safe CSS for aesthetics
+st.markdown(
+    """
+    <style>
+    /* Hide the footer (Safe to hide) */
+    footer {visibility: hidden;}
+    
+    /* Make chat bubbles transparent for that "Clean" look */
+    .stChatMessage {
+        background-color: transparent !important;
+        border: none !important;
+    }
+    
+    /* Enhance buttons to match the Calm theme */
+    div.stButton > button {
+        border-radius: 20px;
+        border: none;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Initialize Session State
 if "messages" not in st.session_state:
     st.session_state.messages = [

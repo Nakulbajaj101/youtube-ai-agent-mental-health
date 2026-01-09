@@ -5,6 +5,9 @@ enableCORS = false
 [browser]
 gatherUsageStats = false
 
+[client]
+toolbarMode = "viewer"
+
 [theme]
 primaryColor = "#A8D5BA"
 backgroundColor = "#fcfcfc"
