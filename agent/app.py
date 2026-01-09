@@ -15,51 +15,40 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Simple, clean hiding strategy (User Preferred) */
+    /* Hide Main Branding Elements */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     
-    /* Hide Header & Toolbar */
-    [data-testid="stHeader"] {
-        visibility: hidden;
-    }
-    [data-testid="stToolbar"] {
-        visibility: hidden;
-    }
+    /* Target specific 2026 Streamlit test IDs */
+    [data-testid="stHeader"] {visibility: hidden;}
+    [data-testid="stToolbar"] {visibility: hidden;}
+    [data-testid="stDecoration"] {visibility: hidden;}
+    [data-testid="stStatusWidget"] {visibility: hidden;}
     
-    /* Hide Footer */
+    /* Ensure footer area doesn't take up space */
     footer {
         visibility: hidden !important;
-    }
-    .stFooter {
-        visibility: hidden !important;
-    }
-    
-    /* Hide 'App created by me' */
-    #MainMenu {
-        visibility: hidden !important;
-    }
-    [data-testid="stStatusWidget"] {
-        visibility: hidden !important;
+        height: 0px;
+        overflow: hidden;
     }
     
-    /* Top decoration bar */
-    [data-testid="stDecoration"] {
-        visibility: hidden !important;
+    /* Remove padding that originally accounted for footer */
+    .block-container {
+        padding-bottom: 0rem !important;
     }
-    
-    /* Make chat bubbles transparent for that "Clean" look */
+
+    /* Your Clean Theme Adjustments */
     .stChatMessage {
         background-color: transparent !important;
         border: none !important;
     }
-    
-    /* Enhance buttons to match the Calm theme */
     div.stButton > button {
         border-radius: 20px;
         border: none;
         padding: 0.5rem 1rem;
         transition: all 0.3s ease;
     }
-
     </style>
     """,
     unsafe_allow_html=True,
