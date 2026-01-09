@@ -42,6 +42,17 @@ st.markdown(
     #MainMenu {
         visibility: hidden !important;
     }
+    /* Cloud Specific: Viewer Badge (Wildcard to match randomized classes) */
+    [class^="_viewerBadge"] {
+        display: none !important;
+    }
+    .viewerBadge_container {
+        display: none !important;
+    }
+    /* Hide the deploy button just in case */
+    .stDeployButton {
+        visibility: hidden !important;
+    }
     
     /* 4. Chat Bubbles Transparent */
     .stChatMessage {
