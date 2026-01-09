@@ -9,6 +9,7 @@ gatherUsageStats = false
 toolbarMode = "viewer"
 
 [theme]
+base = "light"
 primaryColor = "#A8D5BA"
 backgroundColor = "#fcfcfc"
 secondaryBackgroundColor = "#ffffff"

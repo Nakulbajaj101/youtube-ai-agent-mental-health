@@ -15,8 +15,16 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Hide the footer (Safe to hide) */
-    footer {visibility: hidden;}
+    /* Robustly hide elements */
+    [data-testid="stHeader"] {
+        display: none;
+    }
+    [data-testid="stFooter"] {
+        display: none;
+    }
+    [data-testid="stToolbar"] {
+        display: none;
+    }
     
     /* Make chat bubbles transparent for that "Clean" look */
     .stChatMessage {
