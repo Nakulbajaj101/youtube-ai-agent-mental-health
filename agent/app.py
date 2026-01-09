@@ -27,20 +27,23 @@ st.markdown(
     
     /* Hide Footer */
     footer {
-        visibility: hidden;
+        visibility: hidden !important;
     }
-    [data-testid="stFooter"] {
-        visibility: hidden;
+    .stFooter {
+        visibility: hidden !important;
     }
     
     /* Hide 'App created by me' */
+    #MainMenu {
+        visibility: hidden !important;
+    }
     [data-testid="stStatusWidget"] {
-        visibility: hidden;
+        visibility: hidden !important;
     }
     
     /* Top decoration bar */
     [data-testid="stDecoration"] {
-        visibility: hidden;
+        visibility: hidden !important;
     }
     
     /* Make chat bubbles transparent for that "Clean" look */
