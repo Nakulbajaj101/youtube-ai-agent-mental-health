@@ -11,76 +11,79 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Custom CSS for aesthetics (Temporarily disabled for debugging)
-# st.markdown(
-#     """
-#     <style>
-#     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
-#     
-#     /* General App Styling */
-#     .stApp {
-#         background-color: #fcfcfc; /* Very light cool grey/white */
-#         font-family: 'Outfit', sans-serif;
-#     }
-#     
-#     /* Headers */
-#     h1, h2, h3 {
-#         color: #2c3e50;
-#         font-weight: 600;
-#         font-family: 'Outfit', sans-serif;
-#     }
-#     
-#     /* Chat Message Bubbles */
-#     .stChatMessage {
-#         background-color: transparent !important;
-#         border: none !important;
-#     }
-#     
-#     .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
-#          /* User Message */
-#          background-color: transparent;
-#     }
-# 
-#     /* Input Box */
-#     .stChatInput textarea {
-#         background-color: #ffffff;
-#         border-radius: 20px;
-#         border: 1px solid #e0e0e0;
-#         font-family: 'Outfit', sans-serif;
-#         color: #333;
-#     }
-#     
-#     /* Buttons */
-#     .stButton button {
-#         background-color: #A8D5BA; /* Pastel Green */
-#         color: #2c3e50;
-#         border-radius: 20px;
-#         border: none;
-#         padding: 0.5rem 1rem;
-#         font-weight: 500;
-#         transition: all 0.3s ease;
-#     }
-#     .stButton button:hover {
-#         background-color: #8FC9A3;
-#         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-#     }
-#     
-#     /* Video Container */
-#     .stVideo {
-#         border-radius: 15px;
-#         overflow: hidden;
-#         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-#         margin-top: 10px;
-#     }
-#     
-#     /* Hide default header/footer */
-#     header {visibility: hidden;}
-#     footer {visibility: hidden;}
-#     
-#     </style>
-#     """,
-#     unsafe_allow_html=True,
-# )
+# Custom CSS for aesthetics
+st.markdown(
+    """
+    <!-- Google Fonts: standard link method (more robust than @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+    /* General App Styling */
+    .stApp {
+        background-color: #fcfcfc; /* Very light cool grey/white */
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        color: #2c3e50;
+        font-weight: 600;
+        font-family: 'Outfit', sans-serif;
+    }
+    
+    /* Chat Message Bubbles */
+    .stChatMessage {
+        background-color: transparent !important;
+        border: none !important;
+    }
+    
+    .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
+         /* User Message */
+         background-color: transparent;
+    }
+
+    /* Input Box */
+    .stChatInput textarea {
+        background-color: #ffffff;
+        border-radius: 20px;
+        border: 1px solid #e0e0e0;
+        font-family: 'Outfit', sans-serif;
+        color: #333;
+    }
+    
+    /* Buttons */
+    .stButton button {
+        background-color: #A8D5BA; /* Pastel Green */
+        color: #2c3e50;
+        border-radius: 20px;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .stButton button:hover {
+        background-color: #8FC9A3;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Video Container */
+    .stVideo {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-top: 10px;
+    }
+    
+    /* Hide default header/footer */
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Initialize Session State
 if "messages" not in st.session_state:
