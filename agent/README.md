@@ -4,7 +4,11 @@ This directory contains the AI Research Agent that queries the ingested YouTube 
 
 ## Overview
 
-The agent is built using `pydantic-ai` and follows a ReAct (Reasoning + Acting) pattern. It has access to tools that allow it to:
+The agent is built using `pydantic-ai` and follows a sophisticated **Deep Research** pattern (ReAct). It executes a multi-stage reasoning process:
+1.  **Stage 1: Initial Exploration**: The agent performs broad search queries to understand the topic's landscape, key definitions, and major themes.
+2.  **Stage 2: Deep Investigation**: It executes refined, deep-dive queries to find specific mechanisms, case studies, and technical details.
+
+It has access to tools that allow it to:
 *   **Search**: Query the Elasticsearch index for relevant video segments.
 *   **Summarize**: Generate summaries of specific video content.
 *   **Answer**: Synthesize findings into a coherent answer with verified citations (YouTube timestamps).
@@ -51,9 +55,19 @@ if __name__ == "__main__":
     print(result)
 ```
 
+### 3. Run the Streamlit App (UI)
+For a richer experience with a UI and embedded video playback:
+
+```bash
+uv run streamlit run app.py
+```
+
+This will launch a web interface at `http://localhost:8501`.
+
 ## Key Files
 
+*   **`app.py`**: Streamlit application with chat interface and video embedding logic.
+*   **`main.py`**: Entry point for checking agent logic via CLI.
 *   **`agents.py`**: Initializes the `research_agent` and `summarization_agent`.
 *   **`tools.py`**: Defines the `ElasticsearchCLient` class which provides the `search_videos` and `summarize` tools.
-*   **`main.py`**: Entry point for running the agent.
 *   **`utility_functions.py`**: Helper functions (e.g., `fix_youtube_links`).

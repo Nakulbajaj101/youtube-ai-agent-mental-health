@@ -1,10 +1,21 @@
-# YouTube AI Agent 🎥🤖
+# YouTube AI Research Agent: Mental Health & Self-Improvement 🎥�
 
-This project implements an AI-powered agentic workflow that digests YouTube video transcripts, indexes them into Elasticsearch, and provides a Research Agent to answer questions based on the video content.
+This project implements an advanced **Deep Research Agent** that digests and understands YouTube video transcripts to answer complex user questions with high-quality citations.
+
+The system focuses on a curated dataset of **Mental Health and Self-Improvement** content, featuring renowned experts like **Dr. Gabor Maté**, **Mel Robbins**, **Dr. Andrew Huberman**, **Trevor Noah**, and others. It is designed to provide users with deep, actionable insights on topics such as trauma, anxiety, ADHD, relationships, and leadership.
 
 It consists of two main components:
-1.  **Flow (`/flow`)**: A data ingestion pipeline orchestrated by [Temporal](https://temporal.io/). It fetches video metadata, downloads transcripts, preprocesses them, and indexes them into Elasticsearch.
-2.  **Agent (`/agent`)**: A Research Agent built with `pydantic-ai` that queries the Elasticsearch index to answer user questions with citations and timestamps.
+1.  **Flow (`/flow`)**: A robust data ingestion pipeline orchestrated by [Temporal](https://temporal.io/). It handles the ETL process: fetching video metadata, downloading transcripts, preprocesses text, and indexing rich vector embeddings into Elasticsearch.
+2.  **Agent (`/agent`)**: A **Deep Research Agent** built with `pydantic-ai` that goes beyond simple RAG. It employs a multi-stage **ReAct (Reasoning + Acting)** workflow to:
+    *   **Explore**: Perform broad initial searches to understand the topic landscape.
+    *   **Investigate**: Execute targeted, deep-dive queries to find specific mechanisms, case studies, and scientific details.
+    *   **Synthesize**: Combine findings into comprehensive answers with precise, clickable YouTube timestamp citations.
+
+## Key Features
+*   **Deep Research Capabilities**: Unlike standard chatbots, this agent uses a multi-step reasoning process (Initial Exploration -> Deep Investigation) to ensure answers are thorough and nuanced.
+*   **Mental Health Focus**: Specialized knowledge base built from top-tier self-improvement, psychology, and neuroscience podcasts.
+*   **Verifiable Citations**: Every claim is backed by a direct link to the exact moment in the video where it was discussed.
+*   **Interactive UI**: A "Calm/Headspace" inspired Streamlit interface for a mindful research experience.
 
 ## Prerequisites
 
@@ -77,10 +88,16 @@ export OPENAI_API_KEY=your_api_key_here
 ```
 *(Optionally set `ELASTIC_SEARCH_HOST` if it's not localhost)*
 
-**Run the Agent:**
+**Run the Agent (CLI):**
 ```bash
 uv run main.py
 ```
+
+**Run the Streamlit App (UI):**
+```bash
+uv run streamlit run app.py
+```
+*Access the UI at http://localhost:8501*
 
 ## Directory Structure
 

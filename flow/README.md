@@ -15,6 +15,7 @@ The flow is designed to:
 ## Data Source
 
 The list of videos to be processed is defined in `data.py`. 
+Currently, it is populated with a dataset of popular mental health and self-improvement podcasts (e.g., Gabor Maté, Mel Robbins, Andrew Huberman topics).
 To add more videos, simply append to the `data` list in `data.py`:
 
 ```python
