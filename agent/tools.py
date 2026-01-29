@@ -9,6 +9,7 @@ from elasticsearch.exceptions import (
     RequestError,
 )
 from pydantic_ai import Agent, RunContext
+from agents import Runner
 
 
 class ElasticsearchCLient:
@@ -22,7 +23,7 @@ class ElasticsearchCLient:
         else:
             self._client = Elasticsearch(hosts=self._host)
 
-    def search_videos(self, query: str, size: int = 5) -> list[dict]:
+    async def search_videos(self, query: str, size: int = 5) -> list[dict]:
         """
         Performs a full-text search across video titles and subtitles using Elasticsearch.
 
@@ -148,3 +149,13 @@ class ElasticsearchCLient:
             """
         summary_result = await self.summarize_agent.run(prompt)
         return summary_result.output
+    
+    async def summarise_video(self, video_id: str) -> str:
+        """
+        Extracts transcript for a given video ID and uses a sub-agent to summarize it.
+        Returns the summary.
+        """
+        subtitles = self.get_subtitles_by_id(video_id=video_id)["subtitles"]
+        prompt = f"""Transcript: {subtitles}"""
+        summary_result = await Runner.run(self.summarize_agent, input=prompt)
+        return summary_result.final_output

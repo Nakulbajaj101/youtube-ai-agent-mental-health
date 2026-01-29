@@ -1,7 +1,13 @@
 import asyncio
 
 import streamlit as st
+from agents import OpenAIConversationsSession
+
 from main import fetch_results
+from utility_functions import extract_timestamps_links
+
+# Lets define the session state for the OpenAI Conversations Session
+session = OpenAIConversationsSession()
 
 # Page Configuration for "Calm/Headspace" feel
 st.set_page_config(
@@ -111,29 +117,33 @@ if prompt := st.chat_input("Ask a question..."):
         with st.spinner("Reflecting..."):
             try:
                 # Run the agent (Needs to be run in asyncio event loop)
-                response, new_history = asyncio.run(
-                    fetch_results(
-                        prompt, message_history=st.session_state.agent_history
-                    )
-                )
+                response, videos = asyncio.run(fetch_results(prompt, session=session))
 
                 # Update history
-                st.session_state.agent_history.extend(new_history)
+                st.session_state.agent_history.extend(videos[0])
 
-                # Extract links for embedding
-                video_links = response[1]
+                # Cleaning video links
+                video_links = extract_timestamps_links(urls=videos[1])
 
                 # Display text
-                message_placeholder.markdown(response[0])
+                message_placeholder.markdown(response)
 
                 # Display videos below text
-                for link in video_links:
-                    st.video(link)
-
-                # Save to history
-                st.session_state.messages.append(
-                    {"role": "assistant", "content": response, "videos": video_links}
-                )
+                if video_links and isinstance(video_links, dict):
+                    message_placeholder.markdown("### Referenced Videos:")
+                    for url, start_time in video_links.items():
+                        st.video(url, start_time=start_time)
+                    st.session_state.messages.append(
+                        {
+                            "role": "assistant",
+                            "content": response,
+                            "videos": list(video_links.keys()),
+                        }
+                    )
+                else:
+                    st.session_state.messages.append(
+                        {"role": "assistant", "content": response, "videos": []}
+                    )
 
             except Exception as e:
                 st.error(f"An error occurred: {e}")

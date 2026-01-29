@@ -1,6 +1,3 @@
-import re
-
-
 def timestamp_to_seconds(timestamp: str) -> int:
     """
     Converts 'HH:MM:SS', 'MM:SS', or 'S' formats to total seconds.
@@ -57,3 +54,19 @@ def fix_youtube_links(text: str) -> str:
                 processed_links.append(word)
 
     return (text, processed_links)
+
+def extract_timestamps_links(urls: list[str], split_pattern: str="?t=") -> dict[str, int] | None:
+    """
+    Extracts time in seconds from youtube urls
+    """
+    url_dict = {}
+    if not urls:
+        return None
+    
+    for url in urls:
+        if split_pattern not in url:
+            url_dict[url] = 0
+        else:
+            time_part = url.split(split_pattern)[1]
+            url_dict[url] = int(time_part)
+    return url_dict
