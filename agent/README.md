@@ -13,6 +13,15 @@ It has access to tools that allow it to:
 *   **Summarize**: Generate summaries of specific video content.
 *   **Answer**: Synthesize findings into a coherent answer with verified citations (YouTube timestamps).
 
+## Guardrails 🛡️
+
+The agent includes built-in guardrails to ensure safe and relevant interactions:
+
+*   **Topic Guardrail**: Ensures questions are relevant to the agent's domain (e.g., Health, Wellbeing, Self-improvement).
+*   **Safety Guardrail**: Checks the agent's output to prevent harmful or inappropriate responses.
+
+If a guardrail is triggered, the agent will return a specific message explaining why the request was blocked effectively preventing the chat interface from breaking or erroring out.
+
 ## Configuration
 
 The agent's behavior and environment are configured in `config.py` and via environment variables.

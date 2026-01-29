@@ -2,7 +2,7 @@ import os
 
 ELASTIC_SEARCH_HOST = os.getenv("ELASTIC_SEARCH_HOST", "http://localhost:9200")
 ELASTIC_SEARCH_API_KEY = os.getenv("ELASTIC_SEARCH_API_KEY")
-INDEX_NAME = "podcasts"
+INDEX_NAME = os.getenv("INDEX_NAME", "self_improvement_podcasts")
 
 research_instructions = """
 ## Role
