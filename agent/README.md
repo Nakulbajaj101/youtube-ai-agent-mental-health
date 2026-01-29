@@ -31,11 +31,14 @@ The agent's behavior and environment are configured in `config.py` and via envir
 *   `OPENAI_API_KEY`: **Required**. Your OpenAI API key.
 *   `ELASTIC_SEARCH_HOST`: The URL of your Elasticsearch instance (default: `http://localhost:9200`).
 *   `ELASTIC_SEARCH_API_KEY`: API key for Elasticsearch (optional, if your instance requires auth).
+*   `INDEX_NAME`: The name of the Elasticsearch index (default: `self_improvement_podcasts`).
 
 ### Config File (`config.py`)
 
 *   **`research_instructions`**: The system prompt that governs the Research Agent's behavior (ReAct steps, citation rules).
 *   **`summarization_instructions`**: The prompt for the summarization sub-agent.
+*   **`topic_guardrail_instructions`**: Instructions for the topic guardrail to ensure queries are relevant.
+*   **`output_guardrail_instructions`**: Instructions for the output guardrail to ensure safety and relevance of answers.
 
 ## Usage
 
@@ -77,6 +80,7 @@ This will launch a web interface at `http://localhost:8501`.
 
 *   **`app.py`**: Streamlit application with chat interface and video embedding logic.
 *   **`main.py`**: Entry point for checking agent logic via CLI.
-*   **`agents.py`**: Initializes the `research_agent` and `summarization_agent`.
+*   **`ai_agents.py`**: Initializes the `research_agent` and `summarization_agent`.
+*   **`guardrails.py`**: Defines the guardrail functions for input and output validation.
 *   **`tools.py`**: Defines the `ElasticsearchCLient` class which provides the `search_videos` and `summarize` tools.
 *   **`utility_functions.py`**: Helper functions (e.g., `fix_youtube_links`).
